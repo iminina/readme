@@ -1,11 +1,12 @@
 ##### Table of Contents  
-[Jenkins Job DSL](#jenkins-jobdsl)
-[Testing](#testing)
-[Bootstrapping the seed jobs](#seed-jobs)
-[Creating and Removing Pipelines for Projects](#pipelines)
-**[Chef Pipelines](#chef-pipelines)**
-**[Apps](#apps)** 
-**[.jenkins.yml (public API)](#api)**
+- [Jenkins Job DSL](#jenkins-jobdsl)
+- [Testing](#testing)
+- [Bootstrapping the seed jobs](#seed-jobs)
+- [Creating and Removing Pipelines for Projects](#pipelines)
+- [Chef Pipelines](#chef-pipelines)
+- [Apps](#apps)
+- [.jenkins.yml (public API)](#api)
+  * [test](#test)
 
 
 ## Jenkins Job DSL
