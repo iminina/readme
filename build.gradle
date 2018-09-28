@@ -1,0 +1,71 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://nexus.test.com/nexus/content/groups/public'
+            credentials {
+                username
+                password
+            }
+        }
+        jcenter()
+    }
+}
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+
+    group = 'test'
+
+    repositories {
+        mavenLocal()
+        maven {
+            url 'https://nexus.test.com/nexus/content/groups/public'
+            credentials {
+                username
+                password
+            }
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'test-java'
+    apply plugin: 'test-application'
+    apply plugin: 'test-publish'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    run {
+        maxHeapSize = heapSize
+    }
+
+    test {
+        maxHeapSize = heapSize
+        testLogging {
+            exceptionFormat = 'full'
+            showStandardStreams = true
+        }
+    }
+
+    jar.doFirst {
+        manifest {
+            attributes 'Implementation-Title': project.name,
+                    'Implementation-Version': project.version,
+                    'Main-Class': project.mainClassName
+        }
+    }
+
+    distTar.dependsOn(test)
+
+}
+
+project(':test-core') {
+    mainClassName = 'test.test.core.Main'
+
+}
+
+project(':test-server') {
+    mainClassName = 'test.test.server.Main'
+}
